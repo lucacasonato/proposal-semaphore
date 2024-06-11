@@ -93,6 +93,21 @@ async function doWork() {
 }
 ```
 
+The `Semaphore` class also has a `wrap()` method, which is a convenience method
+for wrapping a function to limit concurrency with this semaphore.
+
+```js
+const semaphore = new Semaphore(5);
+
+const wrappedFunction = semaphore.wrap(async () => {
+  // Do some work
+});
+
+async function doWork() {
+  await wrappedFunction();
+}
+```
+
 ```ts
 interface Semaphore {
   new (limit: number): Semaphore;
@@ -100,6 +115,7 @@ interface Semaphore {
   limit: number;
   acquire(): Promise<Semaphore.Permit>;
   with<T>(fn: () => Promise<T>): Promise<T>;
+  wrap<Args, T>(fn: (...args: Args) => T | Promise<T>): (...args: Args) => Promise<T>;
 }
 
 namespace Semaphore {
