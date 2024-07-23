@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+>
+> This proposal has been subsumed by the [Concurrency Control Proposal](https://github.com/michaelficarra/proposal-concurrency-control).
+
 # Semaphores for JavaScript
 
 Stage: 0
